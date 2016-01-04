@@ -2,17 +2,16 @@ require 'stock_fighter/api_mixin'
 
 module StockFighter
   class Level
-    def initialize api_key, level_name = nil, account: nil, venue: nil, stock: nil
+    def initialize level_name, api = nil, api_key: nil, account: nil, venue: nil, stock: nil
+      raise "Must provide an API key, or an Api instance." if api.nil? and api_key.nil?
+
+      @name = level_name
+      @delegator = api or StockFighter.create_api api_key
+
       @defaults = {}
       @defaults[:account] = account unless account.nil?
       @defaults[:venue] = venue unless venue.nil?
       @defaults[:stock] = stock unless stock.nil?
-
-      @delegator = Class.new do
-        include ApiMixin
-      end.new
-
-      @delegator.api_key api_key
     end
 
     ApiMixin.instance_methods.each do |method|

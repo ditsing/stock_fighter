@@ -3,21 +3,35 @@ require 'json'
 
 module StockFighter
   module ApiMixin
-    def self.included base
-      http_delegator = Module.new do
+    def self.create_partified_module
+      Module.new do
         include HTTParty
 
         base_uri 'https://api.stockfighter.io/ob/api'
         format :json
       end
+    end
 
+    # Each instance of base has it's own http delegator.
+    def self.included base
       base.send :define_method, :http do
-        http_delegator
+        # TODO: how do we create module specific vars?
+        @http_delegator ||= ApiMixin.create_partified_module
       end
       base.send :private, :http
     end
 
-    def api_key api_key
+    # All instances of base share the same http delegator.
+    def self.extended base
+      http_delegator = create_partified_module
+
+      base.send :define_singleton_method, :http do
+        http_delegator
+      end
+      base.send :private_class_method, :http
+    end
+
+    def set_api_key api_key
       http.headers "X-Starfighter-Authorization" => api_key
     end
 
