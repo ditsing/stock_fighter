@@ -31,7 +31,7 @@ module StockFighter
       params = method(__method__).parameters.map(&:last)
       body = params.map { |p| [p, eval(p.to_s)] }.to_h
 
-      body[:orderType] = body.remove(:order_type)
+      body[:orderType] = body.delete(:order_type)
 
       http.post "/venues/#{venue}/stocks/#{stock}/orders", body: JSON.dump(body)
     end
