@@ -20,7 +20,7 @@ Or install it yourself as:
 
 ## Usage for Scripting
 
-See the following script. The code can also be found in `examples/test_exchange.rb`. Detailed API is listed in `lib/stock_fighter/api_mixin`.
+See the following script. The code can also be found in `examples/test_exchange.rb`. Detailed API is listed in `lib/stock_fighter/api_mixin.rb`.
 
 ```ruby
 require 'stock_fighter/api_mixin'
@@ -35,9 +35,9 @@ stock = "FOOBAR"
 account = "EXB123456"
 
 # Test if the service is up.
-ok = send_heartbeat.parsed_response["ok"] rescue false
+ok = send_heartbeat.parsed_response["ok"]
 
-raise "Can't sent heart beat" unless ok
+raise "Can't send heartbeat" unless ok
 
 # Get the current orderbook.
 orderbook = get_orderbook venue, stock
