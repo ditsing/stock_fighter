@@ -22,4 +22,5 @@ p "asks: ", orderbook["asks"]
 # By default the direction is 'buy' and order type is 'limit'.
 order = place_order "TESTEX", "FOOBAR", "account", price: 100, qty: 1, direction: :buy, order_type: :limit
 
-p order["ok"], order["id"]
+# There should be an error unless a valid API key is supplied.
+p order
