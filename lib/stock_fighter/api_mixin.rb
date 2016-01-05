@@ -1,6 +1,7 @@
 require 'httparty'
 require 'json'
 
+# TODO: better testing.
 module StockFighter
   module ApiMixin
     def self.included base
