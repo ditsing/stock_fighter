@@ -11,6 +11,7 @@ require "stock_fighter"
 # Pry.start
 
 include StockFighter::ApiMixin
+# TODO: print help messages and API doc.
 
 require "irb"
 IRB.start
