@@ -1,6 +1,6 @@
 # StockFighter
 
-An (unofficial) API for [stockfighter.io](http://stockfighter.io). Designed to be friendly to scripting. Run `bin/console` and start trading!
+An (unofficial) API for [stockfighter.io](http://stockfighter.io). Designed to be friendly to scripting. Run `bundle exec stock_fighter` (or `bin/console`) and start trading!
 
 ## Installation
 

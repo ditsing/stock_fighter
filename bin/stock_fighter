@@ -1,0 +1,45 @@
+#!/usr/bin/env ruby
+
+require "bundler/setup"
+require "stock_fighter"
+
+# You can add fixtures and/or initialization code here to make experimenting
+# with your gem easier. You can also use a different console, if you like.
+
+# (If you use this, don't forget to add pry to your Gemfile!)
+# require "pry"
+# Pry.start
+
+include StockFighter::ApiMixin
+
+puts """Welcome to the StockFighter Console!
+
+Please start by setting your API key:
+
+  set_api_key 'your_api_key_here'
+
+Supported commands:
+
+  send_heartbeat
+  send_venue_heartbeat venue
+
+  list_stocks venue
+  get_orderbook venue, stock
+
+  place_order venue, stock, account, price:, qty:, direction: 'buy', order_type: 'limit'
+  show_order venue, stock, order
+  cancel_order venue, stock, order
+
+  get_quote venue, stock
+
+  list_account_orders venue, account
+  list_account_stock_orders venue, account, stock
+
+See http://stockfighter.io for API details.
+
+Other commands
+  http : A httparty object to send http request, usage: http.get, http.post etc.
+"""
+
+require "irb"
+IRB.start
