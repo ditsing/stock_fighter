@@ -1,8 +1,6 @@
 # StockFighter
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/stock_fighter`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+An (unofficial) API for [stockfighter.io](http://stockfighter.io). Designed to be friendly to scripting. Run `bin/console` and start trading!
 
 ## Installation
 
@@ -20,9 +18,41 @@ Or install it yourself as:
 
     $ gem install stock_fighter
 
-## Usage
+## Usage for Scripting
 
-TODO: Write usage instructions here
+See the following script. The code can also be found in `examples/test_exchange.rb`. Detailed API is listed in `lib/stock_fighter/api_mixin`.
+
+```ruby
+require 'stock_fighter/api_mixin'
+
+include StockFighter::ApiMixin
+
+# Set your API key.
+set_api_key "your_api_key_here"
+
+# Test if the service is up.
+ok = send_heartbeat.parsed_response["ok"] rescue false
+
+raise "Can't sent heart beat" unless ok
+
+# Get the current orderbook.
+orderbook = get_orderbook "TESTEX", "FOOBAR"
+
+raise "Can't get orderbook" unless orderbook["ok"]
+
+p "bids: ", orderbook["bids"]
+p "asks: ", orderbook["asks"]
+
+# Place an order!
+# By default the direction is 'buy' and order type is 'limit'.
+order = place_order "TESTEX", "FOOBAR", "account", price: 100, qty: 1, direction: :buy, order_type: :limit
+
+p order["ok"], order["id"]
+```
+
+As a side effect, all objects will have extra methods :-).
+
+TODO: add examples for more serious coding style.
 
 ## Development
 
