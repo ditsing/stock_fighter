@@ -10,5 +10,7 @@ require "stock_fighter"
 # require "pry"
 # Pry.start
 
+include StockFighter::ApiMixin
+
 require "irb"
 IRB.start
