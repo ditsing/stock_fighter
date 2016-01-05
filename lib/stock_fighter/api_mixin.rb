@@ -27,9 +27,12 @@ module StockFighter
       http.get "/venues/#{venue}/stocks/#{stock}"
     end
 
-    def place_order venue, stock, account, price:, qty:, direction: "buy", orderType: "limit"
+    def place_order venue, stock, account, price:, qty:, direction: "buy", order_type: "limit"
       params = method(__method__).parameters.map(&:last)
       body = params.map { |p| [p, eval(p.to_s)] }.to_h
+
+      body[:orderType] = body.remove(:order_type)
+
       http.post "/venues/#{venue}/stocks/#{stock}/orders", body: JSON.dump(body)
     end
 
