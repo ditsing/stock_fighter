@@ -54,7 +54,7 @@ module StockFighter
     end
 
     def list_account_stock_orders venue, account, stock
-      http.get "get/venues/#{venue}/accounts/#{account}/stocks/#{stock}/orders"
+      http.get "/get/venues/#{venue}/accounts/#{account}/stocks/#{stock}/orders"
     end
 
     private
