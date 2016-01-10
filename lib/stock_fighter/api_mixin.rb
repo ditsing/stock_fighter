@@ -1,15 +1,14 @@
 require 'stock_fighter/api_mixin/trading_api'
 require 'stock_fighter/api_mixin/game_master_api'
 
-# TODO: better testing.
 module StockFighter
   module ApiMixin
     def self.included base
       base.extend ClassMethods
     end
 
-    extend TradingApi
-    extend GameMasterApi
+    include TradingApi
+    include GameMasterApi
 
     module ClassMethods
       private
