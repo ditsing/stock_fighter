@@ -10,6 +10,7 @@ module StockFighter
     include TradingApi
     include GameMasterApi
 
+    # TODO: maybe move this to the mixins?
     module ClassMethods
       private
       def share_class_http_delegator
