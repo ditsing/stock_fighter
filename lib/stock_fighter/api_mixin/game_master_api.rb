@@ -44,4 +44,3 @@ module StockFighter::ApiMixin
     end
   end
 end
-

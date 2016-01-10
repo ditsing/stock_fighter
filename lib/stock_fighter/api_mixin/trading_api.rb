@@ -33,7 +33,7 @@ module StockFighter::ApiMixin
     end
 
     def show_order venue, stock, order
-      trading_http.post "/venues/#{venue}/stocks/#{stock}/orders/#{order}"
+      trading_http.get "/venues/#{venue}/stocks/#{stock}/orders/#{order}"
     end
 
     def cancel_order venue, stock, order
@@ -49,7 +49,7 @@ module StockFighter::ApiMixin
     end
 
     def list_account_stock_orders venue, account, stock
-      trading_http.get "/get/venues/#{venue}/accounts/#{account}/stocks/#{stock}/orders"
+      trading_http.get "/venues/#{venue}/accounts/#{account}/stocks/#{stock}/orders"
     end
 
     private
@@ -64,6 +64,7 @@ module StockFighter::ApiMixin
 
         base_uri 'https://api.stockfighter.io/ob/api'
         format :json
+        headers 'Content-Type' => 'application/json'
       end
     end
   end

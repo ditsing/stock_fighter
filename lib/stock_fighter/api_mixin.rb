@@ -1,5 +1,5 @@
-require 'lib/stock_fighter/api_mixin/trading_api'
-require 'lib/stock_fighter/api_mixin/game_master_api'
+require 'stock_fighter/api_mixin/trading_api'
+require 'stock_fighter/api_mixin/game_master_api'
 
 # TODO: better testing.
 module StockFighter
